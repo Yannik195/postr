@@ -1,28 +1,33 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <div>
+      <v-text-field label="Solo" placeholder="Placeholder" solo></v-text-field>
+      <v-btn elevation="2">post</v-btn>
+      {{ posts }}
+    </div>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import axios from "axios";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
+  name: "App",
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+  components: {},
+
+  data: () => ({
+    posts: null,
+  }),
+  mounted() {
+    axios
+      .get("https://hidden-earth-37796.herokuapp.com/posts")
+      .then((result) => {
+        this.posts = result.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+};
+</script>
