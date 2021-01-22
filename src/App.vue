@@ -11,7 +11,7 @@
         ></v-text-field>
         <v-btn
           :loading="loading"
-          @click="post"
+          @click="rickroll"
           elevation="0"
           color="primary"
           x-large
@@ -72,6 +72,11 @@ export default {
         .catch((err) => {
           console.log(err);
         });
+    },
+    rickroll: function () {
+      window.open(
+        "https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstleyVEVO"
+      );
     },
   },
   mounted() {
