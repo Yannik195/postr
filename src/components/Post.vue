@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>{{ post.userName }}</p>
+    <p class="ma-0">{{ post.userName }}</p>
     <p>{{ post.text }}</p>
   </div>
 </template>
@@ -15,7 +15,4 @@ export default {
 </script>
 
 <style scoped>
-p {
-  margin: 0;
-}
 </style>

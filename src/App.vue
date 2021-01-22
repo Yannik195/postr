@@ -46,6 +46,18 @@ export default {
         })
         .then((response) => {
           console.log(response);
+          this.loadPosts();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    loadPosts: function () {
+      axios
+        .get("https://hidden-earth-37796.herokuapp.com/new-posts")
+        .then((result) => {
+          this.posts = result.data.reverse();
+          this.text = "";
         })
         .catch((err) => {
           console.log(err);
@@ -53,14 +65,7 @@ export default {
     },
   },
   mounted() {
-    axios
-      .get("https://hidden-earth-37796.herokuapp.com/new-posts")
-      .then((result) => {
-        this.posts = result.data;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    this.loadPosts();
   },
 };
 </script>
