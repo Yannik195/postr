@@ -9,7 +9,14 @@
           single-line
           outlined
         ></v-text-field>
-        <v-btn @click="post" elevation="0" color="primary" x-large>post</v-btn>
+        <v-btn
+          :loading="loading"
+          @click="post"
+          elevation="0"
+          color="primary"
+          x-large
+          >post</v-btn
+        >
       </div>
 
       <Post
@@ -36,9 +43,11 @@ export default {
   data: () => ({
     posts: null,
     text: "",
+    loading: false,
   }),
   methods: {
     post: function () {
+      this.loading = true;
       axios
         .post("https://hidden-earth-37796.herokuapp.com/posts", {
           text: this.text,
@@ -58,6 +67,7 @@ export default {
         .then((result) => {
           this.posts = result.data.reverse();
           this.text = "";
+          this.loading = false;
         })
         .catch((err) => {
           console.log(err);
